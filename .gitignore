@@ -21,4 +21,7 @@ yarn-error.log*
 
 .idea
 docs
-blog
+.metals
+.bsp
+.bloop
+target
