@@ -25,3 +25,6 @@ docs
 .bsp
 .bloop
 target
+
+# Local Netlify folder
+.netlify
