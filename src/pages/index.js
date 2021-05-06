@@ -29,7 +29,7 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.tagline}`}
+      title={`${siteConfig.tagline}`}
       description="An community-lead example-driven ZIO documentation site">
       <HomepageHeader />
       <main>

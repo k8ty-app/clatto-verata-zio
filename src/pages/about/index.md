@@ -23,11 +23,12 @@ Things... don't go exactly as planned, and to summarize with a dialogue quote fr
 
 > ASH: Well, maybe not every single syllable, no. But basically I said them. Yes.
 
-and if that's not an allegory for why my code won't compile, I don't know what is 🤣
+and if that's not an allegory for why my code won't compile, I don't know what is 🤣 So this is a site to help "recite
+the words" and get more comfortable with ZIO via examples.
 
 ### That's not what he said
 
-The phrase is actually a reference to the quote `Klaatu Barada Nikto` in the movie The Day the Earth Stood Still.
-It seems like in AoD they changed it to `Clatto Verata Nicto`, but it sounds quite similar to the original. 
+The phrase is actually a reference to the quote `Klaatu Barada Nikto` in the movie The Day the Earth Stood Still. It
+seems like in AoD they changed it to `Clatto Verata Nicto`, but it sounds quite similar to the original.
 
 I like to think that the different version fits better with the theme 🙃
