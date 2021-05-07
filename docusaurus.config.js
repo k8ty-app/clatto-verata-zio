@@ -50,15 +50,20 @@ module.exports = {
             {
                 docs: {
                     sidebarPath: require.resolve('./sidebars.js'),
-                    // Please change this to your repo.
-                    editUrl:
-                        'https://github.com/k8ty-app/clatto-verata-zio/edit/main/',
+                    editUrl: function ({
+                                           locale,
+                                           version,
+                                           versionDocsDirPath,
+                                           docPath,
+                                           permalink,
+                                       }) {
+                        return `https://github.com/k8ty-app/clatto-verata-zio/edit/main/mdocs/${docPath}`;
+                    }
                 },
                 blog: {
                     showReadingTime: true,
-                    // Please change this to your repo.
                     editUrl:
-                        'https://github.com/k8ty-app/clatto-verata-zio/edit/main/blog/',
+                        'https://github.com/k8ty-app/clatto-verata-zio/edit/main/',
                 },
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
