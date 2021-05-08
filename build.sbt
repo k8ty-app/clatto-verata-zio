@@ -16,6 +16,7 @@ lazy val cvz = project
     ),
     libraryDependencies ++= Seq(
       "dev.zio" %% "zio" % zioVersion,
+      "dev.zio" %% "zio-test" % zioVersion,
       "dev.zio" %% "zio-prelude" % preludeVersion
     )
   )
