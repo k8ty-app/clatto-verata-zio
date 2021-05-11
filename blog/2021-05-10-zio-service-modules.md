@@ -1,5 +1,5 @@
 ---
-title: ZIO-JSON
+title: ZIO Service Module Pattern
 author: Terry Drozdowski
 author_url: https://github.com/tdrozdowski
 author_image_url: https://avatars.githubusercontent.com/u/1784034?s=400&v=4
