@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+title: Assert
 ---
 
 ## A quick look at `String`
