@@ -38,7 +38,7 @@ object MyValidations {
 }
 
 val ash = Student(23, "Ash")
-val Sheila = Student(19, "Sheila")
+val sheila = Student(19, "Sheila")
 val evil = Student(16, "")
 // Fail!
 MyValidations.validateDrinkingAge(19)
@@ -48,7 +48,7 @@ MyValidations.validateDrinkingAge(23)
 // composed - Success
 MyValidations.validateStudent(ash)
 // composed - failures
-MyValidations.validateStudent(Sheila)
+MyValidations.validateStudent(sheila)
 MyValidations.validateStudent(evil)
 ```
 
@@ -82,7 +82,7 @@ object LoggedValidations {
 // composed - Success
 LoggedValidations.validateStudent(ash)
 // composed - failures
-LoggedValidations.validateStudent(Sheila)
+LoggedValidations.validateStudent(sheila)
 LoggedValidations.validateStudent(evil)
 
 ```
