@@ -11,6 +11,18 @@ documentation for Scala.
 The documentation is structured as zio-projects (e.g. `zio` and `zio-prelude`) being the top-level menu item, and
 various examples of using that project/library therein.
 
+## Library Versions
+
+Here is a summary table of the dependencies and versions used to compile the examples.
+
+| Org | Package | Version|
+|---|---|---|
+| dev.zio |zio | @ZIO_VERSION@ |
+| dev.zio |zio-test | @ZIO_TEST_VERSION@ |
+| dev.zio |zio-prelude | @PRELUDE_VERSION@ |
+| dev.zio |zio-json | @ZIO_JSON_VERSION@ |
+
+
 ## Contributing
 
 If you would like to contribute an example, just code it up and submit a PR! You can view some current examples for

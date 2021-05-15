@@ -1,13 +1,12 @@
 ---
 sidebar_position: 3
+title: Prelude
 ---
 
-These were written using ZIO JSON @ZIO_JSON_VERSION@ and ZIO Prelude @PRELUDE_VERSION@
+zio-json integrates fairly well with zio-prelude. In particular, you may find that adding the use of
+newtypes to your model classes could help with ensuring proper types and field validation.
 
-zio-json integrates fairly well with zio-prelude as well.  In particularly useful you may find that adding the use of newtypes to your
-model classes could help with ensuring proper types and field validation.
-
-To learn more about newtypes - hop on over to the our nifty section on [Prelude Newtypes](/docs/zio-prelude/newtypes)!
+To learn more about newtypes - hop on over to our nifty section on [Prelude Newtypes](/docs/zio-prelude/newtypes)!
 
 Remember the `Car` model from the basic example?
 
@@ -44,18 +43,19 @@ val inRangeJson = """{"vin": "WBAWL73589P473132", "model": "Q50", "make": "Infin
 val maybeQ50 = inRangeJson.fromJson[Car]
 
 ```
-Smart Newtypes help us ensure that the JSON we're receiving is automatically run through some basic data validation.  You could imagine
-how this could be useful when used with a REST/gRPC API when receiving payloads for processing!  By using a 'smart' subtype, we provide
-some assertions to help validate the value that is to be used with the newtype.  If its not valid, we get a `Validation.Failure`.  We can then turn 
-this into an `JsonError` via the `mapOrFail` method.
 
-If you are using newtypes but aren't using smart newtypes - that's ok!  In fact it makes life a bit easier as you can simply extend the `JsonCodec` for the underlying
-type via something like this: `JsonCodec.string.xmap(wrap, unwrap)`.
+Smart Newtypes help us ensure that the JSON we're receiving is automatically run through some basic data validation. You
+could imagine how this could be useful when used with a REST/gRPC API when receiving payloads for processing!  By using
+a 'smart' subtype, we provide some assertions to help validate the value that is to be used with the newtype. If it's not
+valid, we get a `Validation.Failure`. We can then turn this into an `JsonError` via the `mapOrFail` method.
 
-Ultimately, the zio-json project will auto-derive newtypes making this just as simple as any of the other autoderived types.  But until 
-then we can at least handle it this way.
+If you are using newtypes but aren't using smart newtypes - that's ok!  In fact, it makes life a bit easier as you can
+simply extend the `JsonCodec` for the underlying type via something like this: `JsonCodec.string.xmap(wrap, unwrap)`.
 
-Another thing to point out - please note that we built our new `JsonEncoder` and `JsonDecoder` by extending the existing one provided for int.
-Since the newtype for Year is a subtype of `Int` - we can leverage this!  You can of course do this without the use of newtypes to build your own
-custom `JsonEncoder` or `JsonDecoder`.
+Ultimately, the zio-json project will auto-derive newtypes making this just as simple as any of the other autoderived
+types. But until then we can at least handle it this way.
+
+Another thing to point out - please note that we built our new `JsonEncoder` and `JsonDecoder` by extending the existing
+one provided for int. Since the newtype for Year is a subtype of `Int` - we can leverage this!  You can of course do
+this without the use of newtypes to build your own custom `JsonEncoder` or `JsonDecoder`.
 

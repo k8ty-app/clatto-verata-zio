@@ -13,6 +13,7 @@ lazy val cvz = project
     mdocOut := file("docs"),
     mdocVariables := Map(
       "ZIO_VERSION" -> zioVersion,
+      "ZIO_TEST_VERSION" -> zioVersion,
       "PRELUDE_VERSION" -> preludeVersion,
       "ZIO_JSON_VERSION" -> zioJsonVersion
     ),

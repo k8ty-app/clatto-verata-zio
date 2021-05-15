@@ -8,6 +8,6 @@ tags: [zio-test, zio-prelude, assert, newtype, validation]
 
 I added an intro snippet about [assert](/docs/zio-test/assert) for zio-test.
 
-There was also a recent addition to the zio-prelude section for [newtypes](/docs/zio-prelude/newtypes) and
+There was also a recent addition to the zio-prelude section for [newtypes](/docs/zio-prelude/newtypes)
 and [validation](/docs/zio-prelude/validation) 🎉
 
