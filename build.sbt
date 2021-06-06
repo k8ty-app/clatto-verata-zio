@@ -1,7 +1,8 @@
 
-val zioVersion = "1.0.7"
-val preludeVersion = "1.0.0-RC4"
-val zioJsonVersion = "0.1.4"
+val zioVersion = "1.0.8"
+val preludeVersion = "1.0.0-RC5"
+val zioJsonVersion = "0.1.5"
+val zioOpticsVersion = "0.1.0"
 
 lazy val cvz = project
   .in(file("."))
@@ -15,13 +16,16 @@ lazy val cvz = project
       "ZIO_VERSION" -> zioVersion,
       "ZIO_TEST_VERSION" -> zioVersion,
       "PRELUDE_VERSION" -> preludeVersion,
-      "ZIO_JSON_VERSION" -> zioJsonVersion
+      "ZIO_JSON_VERSION" -> zioJsonVersion,
+      "ZIO_OPTICS_VERSION" -> zioOpticsVersion,
+      "ZIO_QUILL_VERSION" -> "3.7.1"
     ),
     libraryDependencies ++= Seq(
       "dev.zio" %% "zio" % zioVersion,
       "dev.zio" %% "zio-test" % zioVersion,
       "dev.zio" %% "zio-prelude" % preludeVersion,
-      "dev.zio" %% "zio-json" % zioJsonVersion
+      "dev.zio" %% "zio-json" % zioJsonVersion,
+      "dev.zio" %% "zio-optics" % zioOpticsVersion
     )
   )
   .enablePlugins(MdocPlugin)

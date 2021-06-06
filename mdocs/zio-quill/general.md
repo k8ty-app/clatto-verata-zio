@@ -7,7 +7,7 @@ title: General Usage
 optional library that integrates very nicely with ZIO.  When used together you don't need anything other than a JDBC driver to work with a SQL 
 Database.
 
-Here's how things work as a basic example.  This is likely not how you'd set it up for production use and is meant to simply demonstrate how all the pieces work.  See the advanced example
+Here's how things work as a basic example.  This is likely not how you'd set it up for production use and is meant to simply demonstrate how all the pieces work.  See the (structured)[/docs/zio-quill/structured] example
 for how you would work this into a DAO/Repository based on the [Service Module Pattern](/docs/zio/service_module_pattern).
 
 In this example we have one entity we are working with, an Item:
