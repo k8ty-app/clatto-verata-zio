@@ -21,7 +21,8 @@ Here is a summary table of the dependencies and versions used to compile the exa
 | dev.zio |zio-test | @ZIO_TEST_VERSION@ |
 | dev.zio |zio-prelude | @PRELUDE_VERSION@ |
 | dev.zio |zio-json | @ZIO_JSON_VERSION@ |
-
+| dev.zio |zio-optics | @ZIO_OPTICS_VERSION@ |
+| io.getquill | quill-jdbc-zio | @ZIO_QUILL_VERSION@ |
 
 ## Contributing
 
