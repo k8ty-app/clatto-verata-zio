@@ -86,7 +86,7 @@ import java.io.Closeable
 import javax.sql.DataSource
 
 case class ItemRepositoryLive(dataSource: DataSource with Closeable, blocking: Blocking.Service) extends ItemRepository with Queries {
-  val dataSourceLayer: Has[DataSource with Closeable] with Has[Blocking.Service] = Has.allOf[DataSource with Closeable, Blocking.Service](dataSource, blocking)
+  val env: Has[DataSource with Closeable] with Has[Blocking.Service] = Has.allOf[DataSource with Closeable, Blocking.Service](dataSource, blocking)
 
   val ctx: MyZioContext[SnakeCase] = new MyZioContext[SnakeCase](SnakeCase)
 
@@ -97,19 +97,19 @@ case class ItemRepositoryLive(dataSource: DataSource with Closeable, blocking: B
       _     <- ctx.run(insertItem(item))
       items <- ctx.run(itemsQuery)
     } yield items.headOption.getOrElse(throw new Exception("Insert failed!"))
-  }.dependOnDataSource().provide(dataSourceLayer)
+  }.dependOnDataSource().provide(env)
 
   override def all: Task[Seq[ItemRecord]] = ctx.run(itemsQuery).dependOnDataSource().provide(dataSourceLayer)
 
   override def findById(id: Long): Task[ItemRecord] =
-    ctx.run(byId(id)).map(_.headOption.getOrElse(throw new Exception(s"Can't find for id $id"))).dependOnDataSource().provide(dataSourceLayer)
+    ctx.run(byId(id)).map(_.headOption.getOrElse(throw new Exception(s"Can't find for id $id"))).dependOnDataSource().provide(env)
 
 }
 ```
 
 Let's unpack this a bit...
 
-First off - note that we create a `dataSourceLayer` by wrapping the constructor parameter values with `Has` again.  The reason why will become clear soon...
+First off - note that we create a `env` by wrapping the constructor parameter values with `Has` again.  The reason why will become clear soon...
 
 Next, we create a new instance of our `MyZioContext` that we created using the `SnakeCase` `NamingStrategy`.  This can be however your
 database and thus context needs it.
@@ -118,7 +118,7 @@ Be sure to then import the context - `import ctx._` so that it's available for t
 
 Now we can implement our repository method using quill as we normally work.  Invoke the queries via `ctx.run` and manipulate the results as necessary.
 
-But notice the final part of the impelmentation methods - the call to `dependsOnDataSource().provide(dataSourceLayer)`.  What this does is enables your effect
+But notice the final part of the impelmentation methods - the call to `dependsOnDataSource().provide(env)`.  What this does is enables your effect
 to utilize the passed in datasource.  Which will in turn grab a new connection and make it available for your queries.
 
 ### Service Companion Object
