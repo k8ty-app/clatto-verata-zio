@@ -56,22 +56,17 @@ case class Car(vin: String, model: String, make: String, year: String)
 
 case class Valuation(price: Double, expiration: Instant)
 
+@accessible
 trait CarValuationService {
   def getValuation(car: Car): Task[Valuation]
 }
 
 object CarValuationService {
-  
-  // accessor
-  def getValuation(car: Car): RIO[Has[CarValuationService], Valuation] = RIO.accessM(_.get.getValuation(car))
-  
-  val live: URLayer[Clock, Has[CarValuationService]] = {
-    for {
-      clock <- ZIO.environment[Clock]
-    } yield new CarValuationService {
-      override def getValuation(car: Car): Task[Valuation] = ???
-    }
-  }.toLayer
+  val live: URLayer[Clock, Has[CarValuationService]] = (CarValuationServiceLive(_)).toLayer
+}
+
+case class CarValuationServiceLive(clock: Clock.Service) extends CarValuationService {
+  override def getValuation(car: Car) = ???
 }
 ```
 
@@ -79,6 +74,7 @@ To highlight the differences:
 
 * the service trait is no longer called `Service` and is defined outside the object
 * the layers are build by invoking `toLayer` on a ZIO vs using `ZLayer` itself
-* along with the above - any dependencies that you have can be accessed from the ZIO `environment` or as a `service`
-  directly and composed with each other
+* the service implementation is a case class
+* along with the above - any dependencies that you have can be injected directly into the service implementation
 * there is no longer a type alias for the service dependency; use `Has[MyService]` directly instead
+* As of `zio` 1.0.9 - you may now use `@accessible` on the trait in order to generate the accessor methods for your service which are helpful in certain scenarios
