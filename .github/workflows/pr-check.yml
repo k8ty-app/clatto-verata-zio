@@ -1,11 +1,9 @@
-name: Publish to Netlify
-on:
-  push:
-    branches: main
+name: PR Build Check
+'on': pull_request
 
 jobs:
-  push_latest:
-    name: Build and Deploy
+  build_check:
+    name: Make sure it compiles...
     runs-on: ubuntu-latest
     steps:
       - name: Check Meowt
@@ -28,10 +26,3 @@ jobs:
         name: yarn install
       - run: yarn build
         name: Build site
-      - name: Publish
-        uses: netlify/actions/cli@master
-        with:
-          args: deploy --dir=build --prod
-        env:
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
