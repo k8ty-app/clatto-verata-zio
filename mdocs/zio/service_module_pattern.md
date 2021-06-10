@@ -51,22 +51,28 @@ import java.time.Instant
 
 import zio._
 import zio.clock.Clock
+import zio.macros.accessible
 
-case class Car(vin: String, model: String, make: String, year: String)
+// This example is wrapped in an object, due to an issue 
+// with the imports + macros and mdoc
+object Example {
+  
+  case class Car(vin: String, model: String, make: String, year: String)
 
-case class Valuation(price: Double, expiration: Instant)
+  case class Valuation(price: Double, expiration: Instant)
 
-@accessible
-trait CarValuationService {
-  def getValuation(car: Car): Task[Valuation]
-}
+  @accessible
+  trait CarValuationService {
+    def getValuation(car: Car): Task[Valuation]
+  }
 
-object CarValuationService {
-  val live: URLayer[Clock, Has[CarValuationService]] = (CarValuationServiceLive(_)).toLayer
-}
+  object CarValuationService {
+    val live: URLayer[Clock, Has[CarValuationService]] = (CarValuationServiceLive(_)).toLayer
+  }
 
-case class CarValuationServiceLive(clock: Clock.Service) extends CarValuationService {
-  override def getValuation(car: Car) = ???
+  case class CarValuationServiceLive(clock: Clock.Service) extends CarValuationService {
+    override def getValuation(car: Car) = ???
+  } 
 }
 ```
 

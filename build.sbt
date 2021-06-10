@@ -1,5 +1,5 @@
 
-val zioVersion = "1.0.8"
+val zioVersion = "1.0.9"
 val preludeVersion = "1.0.0-RC5"
 val zioJsonVersion = "0.1.5"
 val zioOpticsVersion = "0.1.0"
@@ -25,7 +25,9 @@ lazy val cvz = project
       "dev.zio" %% "zio-test" % zioVersion,
       "dev.zio" %% "zio-prelude" % preludeVersion,
       "dev.zio" %% "zio-json" % zioJsonVersion,
-      "dev.zio" %% "zio-optics" % zioOpticsVersion
-    )
+      "dev.zio" %% "zio-optics" % zioOpticsVersion,
+      "dev.zio" %% "zio-macros" % zioVersion
+    ),
+    scalacOptions += "-Ymacro-annotations"
   )
   .enablePlugins(MdocPlugin)
